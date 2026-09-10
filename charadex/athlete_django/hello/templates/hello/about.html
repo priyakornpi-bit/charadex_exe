@@ -1,0 +1,6 @@
+{% extends "base.html" %}
+{% block title %}Request info · CHARADEX{% endblock %}
+{% block content %}
+<section class="hero" style="grid-template-columns:1fr;"><div><div class="eyebrow">Checkpoint 1</div><h1>Requests & responses</h1><p>This page shows information received from Django's <code>request</code> object.</p></div></section>
+<div class="card" style="padding:22px;"><div class="result-item"><strong>Method</strong><span>{{ method }}</span></div><div class="result-item"><strong>Path</strong><span>{{ path }}</span></div><div class="result-item"><strong>Query</strong><span>{{ query }}</span></div><div class="result-item"><strong>User agent</strong><span>{{ user_agent }}</span></div></div>
+{% endblock %}

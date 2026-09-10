@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="CHARADEX — discover and create characters across every universe.">
+  <title>{% block title %}CHARADEX{% endblock %}</title>
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="{% url 'home' %}">
+      <span class="brand-mark">C</span>
+      <span>CHARADEX</span>
+    </a>
+    <nav class="nav-links">
+      <a href="{% url 'home' %}">Explore</a>
+      {% if user.is_authenticated %}
+        <a href="{% url 'character-create' %}">Create Character</a>
+        <a href="{% url 'favorites' %}">My Favorites</a>
+        <a href="{% url 'profile' %}">Profile</a>
+        <a class="nav-ghost" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a class="nav-ghost" href="{% url 'login' %}">Login</a>
+        <a class="nav-button" href="{% url 'register' %}">Join archive</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  {% if messages %}
+    <div class="messages-wrap">
+      {% for message in messages %}
+        <div class="message {{ message.tags }}">{{ message }}</div>
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div><strong>CHARADEX</strong> · A living archive of extraordinary characters.</div>
+    <div class="footer-links"><a href="{% url 'hello-index' %}">Django Hello World</a> · <a href="/admin/">Admin</a></div>
+  </footer>
+</body>
+</html>
